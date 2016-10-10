@@ -16,6 +16,16 @@ def mult(a, b):
     return p
 
 
+def xor_4_by_4(A, B):
+    result = [[0] * 4] * 4
+
+    for i in range(0, 4):
+        for j in range(0, 4):
+            result[i][j] = A[i][j] ^ B[i][j]
+
+    return result
+
+
 def vector_multiple(row, v):
     result = 0
 

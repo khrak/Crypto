@@ -74,7 +74,13 @@ def key_expansion(key):
 
             w.append(one_word)
 
-    return w
+    result = []
+    i = 0
+    while i <= 40:
+        result.append(w[i: i + 4])
+        i += 4
+
+    return result
 
 
 """
@@ -128,14 +134,4 @@ def mix_columns(byte_matrix):
 
 
 if __name__ == '__main__':
-    key = [[0x54, 0x68, 0x61, 0x74],
-           [0x73, 0x20, 0x6d, 0x79],
-           [0x20, 0x4b, 0x75, 0x6e],
-           [0x67, 0x20, 0x46, 0x75]]
-
-    expanded_key = key_expansion(key)
-
-    i = 0
-    while i <= 40:
-        print(expanded_key[i: i + 4])
-        i += 4
+    pass
