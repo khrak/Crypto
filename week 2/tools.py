@@ -21,7 +21,7 @@ rcon = [
 ]
 
 
-def key_expansion(key):
+def key_expansion(key, s_box):
     w = key[0:4] + key[4:8] + key[8:12] + key[12:16]
 
     for i in range(4, 44):

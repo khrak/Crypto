@@ -34,7 +34,7 @@ s_box = [
 def bytes_ubstitution(byte_matrix):
     for i in range(0, 4):
         for j in range(0, 4):
-            byte_matrix[i][j] = tools.s_box[byte_matrix[i][j]]
+            byte_matrix[i][j] = s_box[byte_matrix[i][j]]
 
     return byte_matrix
 
