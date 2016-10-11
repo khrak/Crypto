@@ -4,7 +4,7 @@ import tools
 
 
 def aes_encrypt(base_key, text):
-    keys = tools.key_expansion(base_key, aes_encryption.s_box)
+    keys = tools.key_expansion(base_key)
 
     for i in range(0, 10):
         text = tools.xor_4_by_4(keys[i], text)
@@ -20,11 +20,13 @@ def aes_encrypt(base_key, text):
 
 
 def aes_decrypt(base_key, cipher_text):
-    keys = tools.key_expansion(base_key, aes_decryption.s_box)
+
+    keys = tools.key_expansion(base_key)
 
     cipher_text = tools.xor_4_by_4(keys[10], cipher_text)
 
     for i in range(9, -1, -1):
+
         if i != 9:
             cipher_text = aes_decryption.mix_columns(cipher_text)
 
@@ -40,20 +42,15 @@ if __name__ == '__main__':
            [0x73, 0x20, 0x6d, 0x79],
            [0x20, 0x4b, 0x75, 0x6e],
            [0x67, 0x20, 0x46, 0x75]]
-
-    # substitution matrix before
-    # plain = [[0x00, 0x3c, 0x6e, 0x47],
-    #          [0x1f, 0x4e, 0x22, 0x74],
-    #          [0x0e, 0x08, 0x1b, 0x31],
-    #          [0x54, 0x59, 0x0b, 0x1a]]
-
+    
     plain = [[0x54, 0x68, 0x61, 0x74],
              [0x73, 0x20, 0x6d, 0x79],
              [0x20, 0x4b, 0x75, 0x6e],
              [0x67, 0x20, 0x46, 0x75]]
 
     print(plain)
+
     plain = aes_encrypt(key, plain)
-    print(plain)
     plain = aes_decrypt(key, plain)
+
     print(plain)
