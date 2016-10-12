@@ -1,4 +1,4 @@
-import tools
+import aes_tools
 
 
 mix_columns_matrix = [[2, 3, 1, 1],
@@ -68,7 +68,7 @@ def mix_columns(byte_matrix):
     for i in range(0, 4):
         column = get_column(byte_matrix, i)
 
-        column = tools.matrix_multiply_vector(mix_columns_matrix, column)
+        column = aes_tools.matrix_multiply_vector(mix_columns_matrix, column)
 
         for j in range(0, 4):
             byte_matrix[j][i] = column[j]
