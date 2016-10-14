@@ -24,7 +24,13 @@ def xor_16_bytes(bytes_a, bytes_b):
 
 
 def get_4_by_4_matrix_from_16_bytes(bytes_16):
-
     result = [[bytes_16[i * 4 + j] for j in range(0, 4)] for i in range(0, 4)]
 
+    return result
+
+
+def get_16byte_array_from_4by4(matrix):
+    result = []
+    for i in range(0,4):
+        result += matrix[i]
     return result
