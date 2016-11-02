@@ -76,7 +76,9 @@ def mix_columns(byte_matrix):
         for j in range(0, 4):
             byte_matrix[j][i] = column[j]
 
-    return byte_matrix
+    result = [get_column(byte_matrix, i) for i in range(0, 4)]
+
+    return result
 
 
 if __name__ == '__main__':
