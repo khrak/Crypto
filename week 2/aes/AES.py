@@ -1,6 +1,8 @@
 import aes_decryption
 import aes_encryption
 import aes_tools
+import binascii
+import array
 
 
 def aes_encrypt(base_key, text):
@@ -20,7 +22,6 @@ def aes_encrypt(base_key, text):
 
 
 def aes_decrypt(base_key, cipher_text):
-
     keys = aes_tools.key_expansion(base_key)
 
     cipher_text = aes_tools.xor_4_by_4(keys[10], cipher_text)
@@ -38,19 +39,21 @@ def aes_decrypt(base_key, cipher_text):
 
 
 if __name__ == '__main__':
-    key = [[0x54, 0x68, 0x61, 0x74],
-           [0x73, 0x20, 0x6d, 0x79],
-           [0x20, 0x4b, 0x75, 0x6e],
-           [0x67, 0x20, 0x46, 0x75]]
+    hex = "140b41b22a29beb4061bda66b6747e14"
 
-    plain = [[92, 23, 12, 4],
-             [27, 52, 3, 123],
-             [93, 5, 0x75, 121],
-             [128, 21, 45, 44]]
+    binary_string = binascii.unhexlify(hex)
 
-    print(plain)
+    key = bytearray(binary_string)
+    key = [[key[4 * i + j] for i in range(0, 4)] for j in range(0, 4)]
 
-    plain = aes_encrypt(key, plain)
-    plain = aes_decrypt(key, plain)
+    plain_text = "mamuka sakhelash"
+    plain_text = [[ord(plain_text[4 * i + j]) for i in range(0, 4)] for j in range(0, 4)]
 
-    print(plain)
+    cipher_text = aes_encrypt(key, plain_text)
+
+    c = ""
+    for i in range(0, 4):
+        for j in range(0, 4):
+            c += format(cipher_text[j][i], 'x')
+
+    print(c)

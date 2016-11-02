@@ -24,20 +24,14 @@ def cbc_encrypt(iv, key, message_text):
 
 if __name__ == '__main__':
 
-    iv = "4ca00ff4c898d61e1edbf1800618fb28"
-    key = "144288afaa485658c611b7f2e574756d"
+    key = [109] * 16
+    message = "6d616d756b61"
 
-    message = "I am cbc crypto guy!"
-
-    iv = bytearray.fromhex(iv)
-    iv = [iv[i] for i in range(0, len(iv))]
-
-    key = bytearray.fromhex(key)
-    key = [key[i] for i in range(0, len(key))]
+    iv = [0] * 16
 
     message = message.encode()
     message = [message[i] for i in range(0, len(message))]
 
     cipher_text = cbc_encrypt(iv, key, message)
 
-    print(cipher_text)
+    print(cipher_text[16:])
