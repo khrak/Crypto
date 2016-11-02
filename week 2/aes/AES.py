@@ -39,21 +39,15 @@ def aes_decrypt(base_key, cipher_text):
 
 
 if __name__ == '__main__':
-    hex = "140b41b22a29beb4061bda66b6747e14"
+    key_st = "54 68 61 74 73 20 6D 79 20 4B 75 6E 67 20 46 75".split(" ")
 
-    binary_string = binascii.unhexlify(hex)
+    key = [int(st, 16) for st in key_st]
 
-    key = bytearray(binary_string)
-    key = [[key[4 * i + j] for i in range(0, 4)] for j in range(0, 4)]
+    keys = aes_tools.key_expansion(key)
 
-    plain_text = "mamuka sakhelash"
-    plain_text = [[ord(plain_text[4 * i + j]) for i in range(0, 4)] for j in range(0, 4)]
-
-    cipher_text = aes_encrypt(key, plain_text)
-
-    c = ""
-    for i in range(0, 4):
-        for j in range(0, 4):
-            c += format(cipher_text[j][i], 'x')
-
-    print(c)
+    for k in keys:
+        st = ""
+        for ks in k:
+            for bt in ks:
+                st += " " + hex(bt)[2:]
+        print(st)
